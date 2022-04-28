@@ -25,6 +25,27 @@ namespace BattleshipLite
             Console.WriteLine();
         }
 
+        private static PlayerInfoModel CreatePlayer()
+        {
+            PlayerInfoModel output = new PlayerInfoModel();
 
+            // Ask user for their name
+            output.UsersName = AskForUsersName();
+
+            // Load up the shot grid
+            output.ShotGrid
+            // Ask the user for their 5 ship placements
+            // Clear
+
+            return output;
+        }
+
+        private static string AskForUsersName()
+        {
+            Console.WriteLine("What is your name: ");
+            string output = Console.ReadLine();
+
+            return output;
+        }
     }
 }
