@@ -33,7 +33,7 @@ namespace BattleshipLite
             output.UsersName = AskForUsersName();
 
             // Load up the shot grid
-            output.ShotGrid
+            output.ShotGrid = 
             // Ask the user for their 5 ship placements
             // Clear
 
