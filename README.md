@@ -1,1 +1,1 @@
-BattleshipLiteApp
+Console application based on the board game "Battleship", this is a two-player game where each player will place five pegs on the board to represent their battleships. Players will then take turns firing on their opponent's ships. The first person to sink all five ships wins.
