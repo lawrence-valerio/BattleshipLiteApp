@@ -20,20 +20,44 @@ namespace BattleshipLite
 
             do
             {
-                // Dispalyer grid from activePlayer on where they fired
                 DisplayShotGrid(activePlayer);
 
-                // Ask activePlayer for a shot
-                // Determine if it is a valid shot
-                // Determine shot results
+                RecordPlayerShot(activePlayer, opponent);
 
-                // Determine if game is over
-                // If over, set player1 as the winner
-                // else, swap positions (activePlayer to opponent)
+                bool doesGameContinue = GameLogic.PlayerStillActive(opponent);
+
+                if(doesGameContinue == true)
+                {
+                    // Swap positions
+                    (activePlayer, opponent) = (opponent, activePlayer);
+                }
+                else
+                {
+                    winner = activePlayer;
+                }
 
             } while (winner == null);
 
+            IdentifyWinner(winner);
+
             Console.ReadLine();
+        }
+
+        private static void IdentifyWinner(PlayerInfoModel winner)
+        {
+            Console.WriteLine($"Congratulations to {winner.UsersName} for winning!");
+            Console.WriteLine($"{winner.UsersName} took {GameLogic.GetShotCount(winner)} shots.");
+        }
+
+        private static void RecordPlayerShot(PlayerInfoModel activePlayer, PlayerInfoModel opponent)
+        {
+            // Asks for a show (eg. "B2")
+            // Determine what row and column that is - split it apart
+            // Determine if that is a valid shot
+            // Go back to the beginning if not a valid shot
+
+            // Determine shot results
+            // Record results
         }
 
         private static void DisplayShotGrid(PlayerInfoModel activePlayer)
