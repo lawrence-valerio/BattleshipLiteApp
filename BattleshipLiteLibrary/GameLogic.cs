@@ -92,7 +92,7 @@ namespace BattleshipLiteLibrary
             {
                 model.ShipLocations.Add(new GridSpotModel
                 {
-                    SpotLetter = row,
+                    SpotLetter = row.ToUpper(),
                     SpotNumber = column,
                     Status = GridSpotStatus.Ship
                 });
@@ -105,7 +105,17 @@ namespace BattleshipLiteLibrary
 
         private static bool ValidateShipLocation(PlayerInfoModel model, string row, int column)
         {
-            throw new NotImplementedException();
+            bool isValidLocation = true;
+
+            foreach (var ship in model.ShipLocations)
+            {
+                if(ship.SpotLetter == row.ToUpper() && ship.SpotNumber == column)
+                {
+                    isValidLocation = false;
+                }
+            }
+
+            return isValidLocation;
         }
 
         private static bool ValidateGridLocation(PlayerInfoModel model, string row, int column)
