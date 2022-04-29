@@ -81,13 +81,36 @@ namespace BattleshipLiteLibrary
 
         public static bool PlaceShip(PlayerInfoModel model, string location)
         {
+            bool output = false;
+
             (string row, int column) = SplitShotIntoRowAndColumn(location);
 
-            model.ShipLocations.Add(new GridSpotModel
+            bool isValidLocation = ValidateGridLocation(model, row, column);
+            bool isSpotOpen = ValidateShipLocation(model, row, column);
+
+            if (isValidLocation && isSpotOpen)
             {
-                SpotLetter = row,
-                SpotNumber = column,
-            })
+                model.ShipLocations.Add(new GridSpotModel
+                {
+                    SpotLetter = row,
+                    SpotNumber = column,
+                    Status = GridSpotStatus.Ship
+                });
+
+                output = true;
+            }
+
+            return output;
+        }
+
+        private static bool ValidateShipLocation(PlayerInfoModel model, string row, int column)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static bool ValidateGridLocation(PlayerInfoModel model, string row, int column)
+        {
+            throw new NotImplementedException();
         }
 
         public static (string row, int column) SplitShotIntoRowAndColumn(string shot)
