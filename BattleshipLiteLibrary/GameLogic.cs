@@ -44,7 +44,7 @@ namespace BattleshipLiteLibrary
 
             spot.SpotLetter = letter;
             spot.SpotNumber = number;
-            spot.status = GridSpotStatus.Empty;
+            spot.Status = GridSpotStatus.Empty;
 
             model.ShotGrid.Add(spot);
         }
