@@ -49,19 +49,45 @@ namespace BattleshipLiteLibrary
             model.ShotGrid.Add(spot);
         }
 
-        public static bool PlayerStillActive(PlayerInfoModel opponent)
+        public static bool PlayerStillActive(PlayerInfoModel player)
         {
-            throw new NotImplementedException();
+            bool isActive = false;
+
+            foreach (var ship in player.ShipLocations)
+            {
+                if(ship.Status != GridSpotStatus.Sunk)
+                {
+                    isActive = true;
+                }
+            }
+
+            return isActive;
         }
 
-        public static int GetShotCount(PlayerInfoModel winner)
+        public static int GetShotCount(PlayerInfoModel player)
         {
-            throw new NotImplementedException();
+            int shotCount = 0;
+
+            foreach (var shot in player.ShotGrid)
+            {
+                if (shot.Status != GridSpotStatus.Empty)
+                {
+                    shotCount ++;
+                }
+            }
+
+            return shotCount;
         }
 
         public static bool PlaceShip(PlayerInfoModel model, string location)
         {
-            throw new NotImplementedException();
+            (string row, int column) = SplitShotIntoRowAndColumn(location);
+
+            model.ShipLocations.Add(new GridSpotModel
+            {
+                SpotLetter = row,
+                SpotNumber = column,
+            })
         }
 
         public static (string row, int column) SplitShotIntoRowAndColumn(string shot)
