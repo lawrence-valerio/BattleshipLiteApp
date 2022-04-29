@@ -120,12 +120,35 @@ namespace BattleshipLiteLibrary
 
         private static bool ValidateGridLocation(PlayerInfoModel model, string row, int column)
         {
-            throw new NotImplementedException();
+            bool isValidLocation = false;
+
+            foreach (var ship in model.ShotGrid)
+            {
+                if (ship.SpotLetter == row.ToUpper() && ship.SpotNumber == column)
+                {
+                    isValidLocation = true;
+                }
+            }
+
+            return isValidLocation;
         }
 
         public static (string row, int column) SplitShotIntoRowAndColumn(string shot)
         {
-            throw new NotImplementedException();
+            string row = "";
+            int column = 0;
+
+            if (shot.Length != 2)
+            {
+                throw new ArgumentException("This was an invalid shot type.", "shot");
+            }
+
+            char[] shotArray = shot.ToArray();
+
+            row = shotArray[0].ToString();
+            column = int.Parse(shotArray[1].ToString());
+
+            return (row, column);
         }
 
         public static bool ValidateShot(PlayerInfoModel activePlayer, string row, int column)
